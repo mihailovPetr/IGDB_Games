@@ -19,7 +19,7 @@ class RetrofitGamesRepo(
 ) : IGamesRepo {
 
     private val gamesRequestBody =
-        ("fields name, summary, rating, aggregated_rating; sort total_rating desc; " +
+        ("fields name, summary, rating, aggregated_rating, cover.image_id; sort total_rating desc; " +
                 "where aggregated_rating_count > 3 & rating_count > 20; limit 100;")
             .toRequestBody("text/plain".toMediaTypeOrNull())
 

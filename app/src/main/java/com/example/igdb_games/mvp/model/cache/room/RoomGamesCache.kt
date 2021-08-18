@@ -26,6 +26,6 @@ class RoomGamesCache(val db: Database) : IGamesCache {
 
     override fun getGame(gameId: Int) = Single.fromCallable {
         db.gameDao.findById(gameId)?.let { Game.fromRoomGame(it) }
-            ?: Game(0, null, null, null, null)
+            ?: Game(0, null, null, null, null, null)
     }.subscribeOn(Schedulers.io())
 }

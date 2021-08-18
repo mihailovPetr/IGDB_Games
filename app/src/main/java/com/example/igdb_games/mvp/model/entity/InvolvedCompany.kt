@@ -33,4 +33,4 @@ fun InvolvedCompany.toRoomGameCompanyCrossRef(gameId: Int) =
     RoomGameCompanyCrossRef(gameId, company.id, developer, publisher)
 
 fun InvolvedCompany.toRoomCompany() =
-    RoomCompany(company.id, company.name, company.description)
+    RoomCompany(company.id, company.name, company.description, company.logo)

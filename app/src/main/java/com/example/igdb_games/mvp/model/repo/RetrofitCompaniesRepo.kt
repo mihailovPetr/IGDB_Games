@@ -40,7 +40,7 @@ class RetrofitCompaniesRepo(
     }
 
     private val getCompanyRequestText =
-        "fields name, description, developed.name, published.name; where id = %d;"
+        "fields name, description, developed.name, published.name, logo.image_id; where id = %d;"
 
     override fun getCompany(companyId: Int): Single<Company> {
 

@@ -12,13 +12,14 @@ data class Company(
     val name: String?,
     val description: String?,
     val developed: List<Game>?,
-    val published: List<Game>?
+    val published: List<Game>?,
+    val logo: Image?
 ) : Parcelable {
     companion object {}
 }
 
 fun Company.toRoomCompany(): RoomCompany {
-    return RoomCompany(id, name, description)
+    return RoomCompany(id, name, description, logo)
 }
 
 fun Company.Companion.fromRoomCompany(
@@ -31,7 +32,8 @@ fun Company.Companion.fromRoomCompany(
         roomCompany.name,
         roomCompany.description,
         developed?.map { Game.fromRoomGame(it) },
-        published?.map { Game.fromRoomGame(it) }
+        published?.map { Game.fromRoomGame(it) },
+        roomCompany.logo
     )
 }
 
@@ -49,7 +51,7 @@ fun Company.Companion.fromCompanyDTO(companyDTO: CompanyDTO): Company {
 
     }
 
-    return Company(companyDTO.id, companyDTO.name, companyDTO.description, developed, published)
+    return Company(companyDTO.id, companyDTO.name, companyDTO.description, developed, published, companyDTO.logo)
 }
 
 

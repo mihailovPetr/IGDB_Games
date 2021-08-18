@@ -11,18 +11,19 @@ data class Game(
     val name: String?,
     val summary: String?,
     val rating: Float?,
-    val aggregatedRating: Float?
+    val aggregatedRating: Float?,
+    val cover: Image?
 ) : Parcelable {
     companion object {}
 }
 
-fun Game.toRoomGame() = RoomGame(id, name, summary, rating, aggregatedRating)
+fun Game.toRoomGame() = RoomGame(id, name, summary, rating, aggregatedRating, cover)
 
 fun Game.Companion.fromRoomGame(roomGame: RoomGame) =
-    Game(roomGame.id, roomGame.name, roomGame.summary, roomGame.rating, roomGame.aggregatedRating)
+    Game(roomGame.id, roomGame.name, roomGame.summary, roomGame.rating, roomGame.aggregatedRating, roomGame.cover)
 
 fun Game.Companion.fromGameDTO(gameDTO: GameDTO) =
-    Game(gameDTO.id, gameDTO.name, gameDTO.summary, gameDTO.rating, gameDTO.aggregatedRating)
+    Game(gameDTO.id, gameDTO.name, gameDTO.summary, gameDTO.rating, gameDTO.aggregatedRating, gameDTO.cover)
 
 //fun Game.Companion.fromGameDTO(gameDTO: GameDTO): Game {
 //

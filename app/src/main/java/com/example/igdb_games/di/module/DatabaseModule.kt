@@ -18,6 +18,6 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun database(app: App, @Named("databaseName") databaseName: String): Database =
-        Room.databaseBuilder(app, Database::class.java, databaseName).build()
+        Room.databaseBuilder(app, Database::class.java, databaseName).fallbackToDestructiveMigration().build()
 
 }

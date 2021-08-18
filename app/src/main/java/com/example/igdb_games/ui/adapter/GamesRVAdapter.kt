@@ -3,8 +3,11 @@ package com.example.igdb_games.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.igdb_games.databinding.ItemGameBinding
 import com.example.igdb_games.mvp.model.entity.Game
+import com.example.igdb_games.mvp.model.entity.Image
+import com.example.igdb_games.mvp.model.entity.load
 import com.example.igdb_games.mvp.presenter.list.IGameListPresenter
 import com.example.igdb_games.mvp.view.list.GameItemView
 
@@ -33,8 +36,8 @@ class GamesRVAdapter(val presenter: IGameListPresenter) :
         GameItemView {
 
         override fun fillFields(game: Game) = with(vb) {
+            game.cover?.getURL(Image.THUMB)?.let { ivCover.load(it) }
             tvName.text = game.name
-            //Glide.with(ivCover).load()
         }
 
         override var pos = -1

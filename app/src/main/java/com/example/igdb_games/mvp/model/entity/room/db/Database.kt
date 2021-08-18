@@ -10,7 +10,7 @@ import com.example.igdb_games.mvp.model.entity.room.dao.GameDao
 
 @androidx.room.Database(
     entities = [RoomGame::class, RoomCompany::class, RoomGameCompanyCrossRef::class],
-    version = 1
+    version = 3
 )
 abstract class Database : RoomDatabase() {
     abstract val gameDao: GameDao

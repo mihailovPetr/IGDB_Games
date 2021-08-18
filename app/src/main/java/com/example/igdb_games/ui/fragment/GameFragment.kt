@@ -5,18 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import com.example.igdb_games.R
 import com.example.igdb_games.databinding.FragmentGameBinding
 import com.example.igdb_games.mvp.model.entity.Company
 import com.example.igdb_games.mvp.model.entity.Game
+import com.example.igdb_games.mvp.model.entity.Image
+import com.example.igdb_games.mvp.model.entity.load
 import com.example.igdb_games.mvp.presenter.GamePresenter
 import com.example.igdb_games.mvp.view.GameView
 import com.example.igdb_games.ui.App
-
 import com.example.igdb_games.ui.BackButtonListener
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import kotlin.math.roundToInt
 
 class GameFragment : MvpAppCompatFragment(), GameView, BackButtonListener {
 
@@ -57,8 +57,11 @@ class GameFragment : MvpAppCompatFragment(), GameView, BackButtonListener {
 
             tvGameName.text = game.name
             tvSummary.text = game.summary
+            tvRating.text = game.rating?.roundToInt().toString()
+            tvAggregatedRating.text = game.aggregatedRating?.roundToInt().toString()
+            game.cover?.getURL(Image.COVER_BIG)?.let { ivGameCover.load(it) }
 
-            for (developer in developers){
+            for (developer in developers) {
                 val tv = TextView(requireContext())
                 tv.text = developer.name
                 tv.setTextColor(Color.BLUE)
@@ -66,7 +69,7 @@ class GameFragment : MvpAppCompatFragment(), GameView, BackButtonListener {
                 developersContainer.addView(tv)
             }
 
-            for (publisher in publishers){
+            for (publisher in publishers) {
                 val tv = TextView(requireContext())
                 tv.text = publisher.name
                 tv.setTextColor(Color.BLUE)

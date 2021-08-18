@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.igdb_games.databinding.FragmentCompanyBinding
 import com.example.igdb_games.mvp.model.entity.Company
+import com.example.igdb_games.mvp.model.entity.Image
+import com.example.igdb_games.mvp.model.entity.load
 import com.example.igdb_games.mvp.presenter.CompanyPresenter
 import com.example.igdb_games.mvp.view.CompanyView
 import com.example.igdb_games.ui.App
@@ -72,6 +74,7 @@ class CompanyFragment : MvpAppCompatFragment(), CompanyView, BackButtonListener 
         vb?.apply {
             tvCompanyName.text = company.name
             tvCompanyDescription.text = company.description
+            company.logo?.getURL(Image.LOGO_MED)?.let { ivLogo.load(it) }
         }
     }
 
