@@ -21,7 +21,7 @@ import kotlin.math.roundToInt
 class GameFragment : MvpAppCompatFragment(), GameView, BackButtonListener {
 
     companion object {
-        private const val USER_ARG = "game"
+        const val USER_ARG = "game"
 
         fun newInstance(game: Game) = GameFragment().apply {
             arguments = Bundle().apply {
